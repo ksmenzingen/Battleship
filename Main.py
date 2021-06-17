@@ -10,9 +10,10 @@ feld.placeShip(Ship(6,'v',2,0))
 feld.placeShip(Ship(4,'h',5,6))
 feld.placeShip(Ship(3,'v',0,1))
 
+cellsize = 20
 pygame.init()
 pygame.display.set_caption("Battleship")
-window = Window(20,12,12)
+window = Window(cellsize,12,12)
 
 game_over = False
 numShots = 0
@@ -22,28 +23,28 @@ delay = 100
 
 
 while not game_over:
-    pygame.time.delay(delay)
-    for event in pygame.event.get():
-        if event.type == pygame.QUIT:
-            game_over = True
-            break
-        # if event.type == pygame.MOUSEBUTTONDOWN:
-    
-    
-    window.draw(feld)
     print("Schiessen!")
-    x=int(input("x-Koordinate: "))
-    y=int(input("y-Koordinate: "))
-    if(feld.shoot(x,y)):
-        print("TREFFER!")
-        print()
-        shipsAlive -= 1
-    else:
-        print("Daneben...")
-        print()
-    numShots += 1
-    if(shipsAlive==0):
-        game_over = True
+    window.draw(feld)
+    for event in pygame.event.get():
+        # if event.type == pygame.QUIT:
+        #     game_over = True
+        #     break
+        if event.type == pygame.MOUSEBUTTONDOWN:
+            location = pygame.mouse.get_pos()
+            x = int(location[0])//cellsize
+            y = int(location[1])//cellsize
+            if(feld.shoot(x,y)):
+                print("TREFFER!")
+                print()
+                shipsAlive -= 1
+            else:
+                print("Daneben...")
+                print()
+            numShots += 1
+            if(shipsAlive==0):
+                game_over=True
+            
+    
 
 print("Spielende! Du hast "+str(numShots)+" Schüsse benötigt.")
 pygame.quit()

@@ -12,7 +12,7 @@ feld.placeShip(Ship(3,'v',0,1))
 
 pygame.init()
 pygame.display.set_caption("Battleship")
-window = Window()
+window = Window(20,12,12)
 
 game_over = False
 numShots = 0
@@ -29,7 +29,8 @@ while not game_over:
             break
         # if event.type == pygame.MOUSEBUTTONDOWN:
     
-    window.draw()
+    
+    window.draw(feld)
     print("Schiessen!")
     x=int(input("x-Koordinate: "))
     y=int(input("y-Koordinate: "))

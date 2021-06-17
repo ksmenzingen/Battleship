@@ -1,5 +1,7 @@
 import pygame
 from pygame import *
+from pygame import sprite
+from Sprite import *
 
 class Window:
     def __init__(self, cellsize, height, width):
@@ -14,14 +16,27 @@ class Window:
         battlefield.updateField()
         field = battlefield.field
 
-        for i in range(self.height-1):
-            for j in range(self.width-1):
+        spritegroup = pygame.sprite.Group()
+
+        for i in range(self.height):
+            for j in range(self.width):
+                dot = Sprite("sprite_waves_1.png",self.cellsize)
+
+                dot.move(j*self.cellsize,i*self.cellsize)
+                
+                spritegroup.add(dot)
+
+        spritegroup.draw(self.surface)
+
+        for i in range(self.height):
+            for j in range(self.width):
                 if field[j][i] == 'S':
                     dot = pygame.Rect(self.cellsize*j,self.cellsize*i,self.cellsize,self.cellsize)
                     pygame.draw.rect(self.surface,(125,125,125),dot)
                 elif field[j][i] == 'M':
                     dot = pygame.Rect(self.cellsize*j,self.cellsize*i,self.cellsize,self.cellsize)
-                    pygame.draw.rect(self.surface,(255,0,0),dot)
+                    pygame.draw.rect(self.surface,(255,0,0),dot) 
+
         
 
         for i in range(self.height):

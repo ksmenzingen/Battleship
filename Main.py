@@ -1,5 +1,7 @@
+import pygame, Battlefield, Ship, Window
 from Battlefield import *
 from Ship import *
+from Window import *
 
 
 feld = BattleField(12,12)
@@ -8,12 +10,26 @@ feld.placeShip(Ship(6,'v',2,0))
 feld.placeShip(Ship(4,'h',5,6))
 feld.placeShip(Ship(3,'v',0,1))
 
+pygame.init()
+pygame.display.set_caption("Battleship")
+window = Window()
+
 game_over = False
 numShots = 0
 shipsAlive = len(feld.ships)
 
+delay = 100
+
+
 while not game_over:
-    print(feld)
+    pygame.time.delay(delay)
+    for event in pygame.event.get():
+        if event.type == pygame.QUIT:
+            game_over = True
+            break
+        # if event.type == pygame.MOUSEBUTTONDOWN:
+    
+    window.draw()
     print("Schiessen!")
     x=int(input("x-Koordinate: "))
     y=int(input("y-Koordinate: "))
@@ -29,3 +45,4 @@ while not game_over:
         game_over = True
 
 print("Spielende! Du hast "+str(numShots)+" Schüsse benötigt.")
+pygame.quit()

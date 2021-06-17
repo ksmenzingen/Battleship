@@ -2,6 +2,7 @@ import pygame, Battlefield, Ship, Window
 from Battlefield import *
 from Ship import *
 from Window import *
+#test
 
 
 feld = BattleField(12,12)

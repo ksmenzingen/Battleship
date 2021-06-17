@@ -23,12 +23,11 @@ delay = 100
 
 
 while not game_over:
-    print("Schiessen!")
     window.draw(feld)
     for event in pygame.event.get():
-        # if event.type == pygame.QUIT:
-        #     game_over = True
-        #     break
+        if event.type == pygame.QUIT:
+            game_over = True
+            break
         if event.type == pygame.MOUSEBUTTONDOWN:
             location = pygame.mouse.get_pos()
             x = int(location[0])//cellsize

@@ -14,12 +14,6 @@ class Window:
         battlefield.updateField()
         field = battlefield.field
 
-        for i in range(self.height):
-            pygame.draw.line(self.surface,(255,255,255),(0,i*self.cellsize),(self.width*self.cellsize,i*self.cellsize))
-        for i in range(self.width):
-            pygame.draw.line(self.surface,(255,255,255),(i*self.cellsize,0),(i*self.cellsize,self.height*self.cellsize))
-
-
         for i in range(self.height-1):
             print(i)
             for j in range(self.width-1):
@@ -30,6 +24,12 @@ class Window:
                 elif field[j][i] == 'M':
                     dot = pygame.Rect(self.cellsize*j,self.cellsize*i,self.cellsize,self.cellsize)
                     pygame.draw.rect(self.surface,(255,0,0),dot)
+        
+
+        for i in range(self.height):
+            pygame.draw.line(self.surface,(0,0,0),(0,i*self.cellsize),(self.width*self.cellsize,i*self.cellsize))
+        for i in range(self.width):
+            pygame.draw.line(self.surface,(0,0,0),(i*self.cellsize,0),(i*self.cellsize,self.height*self.cellsize))
 
 
         pygame.display.update()

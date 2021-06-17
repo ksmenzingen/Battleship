@@ -21,9 +21,7 @@ class Window:
 
 
         for i in range(self.height-1):
-            print(i)
             for j in range(self.width-1):
-                print(j)
                 if field[j][i] == 'S':
                     dot = pygame.Rect(self.cellsize*j,self.cellsize*i,self.cellsize,self.cellsize)
                     pygame.draw.rect(self.surface,(125,125,125),dot)

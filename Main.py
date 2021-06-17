@@ -10,7 +10,7 @@ feld.placeShip(Ship(6,'v',2,0))
 feld.placeShip(Ship(4,'h',5,6))
 feld.placeShip(Ship(3,'v',0,1))
 
-cellsize = 20
+cellsize = 100
 pygame.init()
 pygame.display.set_caption("Battleship")
 window = Window(cellsize,12,12)
@@ -33,18 +33,12 @@ while not game_over:
             x = (location[0])//cellsize
             y = (location[1])//cellsize
             
-            if(feld.shoot(x,y) and feld.field[x][y] != 'S'):
-                print("TREFFER!")
-                print()
+            if(feld.field[x][y] != 'S' and feld.shoot(x,y)):
                 shipsAlive -= 1
-            else:
-                print("Daneben...")
-                print()
             numShots += 1
             if(shipsAlive==0):
                 game_over=True
             
-    
 
 print("Spielende! Du hast "+str(numShots)+" Schüsse benötigt.")
 pygame.quit()

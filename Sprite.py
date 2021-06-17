@@ -15,3 +15,6 @@ class Sprite(pygame.sprite.Sprite):
     def move(self,pos_x,pos_y):
         self.rect.x = pos_x
         self.rect.y = pos_y
+
+    def turn(self, angle):
+        self.image = pygame.transform.rotate(self.image, angle)

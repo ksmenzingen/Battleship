@@ -1,4 +1,4 @@
-import pygame, Battlefield, Ship, Window
+import pygame, Battlefield, Ship, Window, math
 from Battlefield import *
 from Ship import *
 from Window import *
@@ -23,17 +23,17 @@ delay = 100
 
 
 while not game_over:
-    print("Schiessen!")
     window.draw(feld)
     for event in pygame.event.get():
-        # if event.type == pygame.QUIT:
-        #     game_over = True
-        #     break
+        if event.type == pygame.QUIT:
+            game_over = True
+            break
         if event.type == pygame.MOUSEBUTTONDOWN:
             location = pygame.mouse.get_pos()
-            x = int(location[0])//cellsize
-            y = int(location[1])//cellsize
-            if(feld.shoot(x,y)):
+            x = (location[0])//cellsize
+            y = (location[1])//cellsize
+            
+            if(feld.shoot(x,y) and feld.field[x][y] != 'S'):
                 print("TREFFER!")
                 print()
                 shipsAlive -= 1
